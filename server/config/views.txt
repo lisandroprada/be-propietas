@@ -1,0 +1,1 @@
+db.createView('clientesView','clientes', [{ $project : { "fullName" : {$concat : ["$customerName", " ", "$customerLastName"]}, phone: 1, identityCard: 1}}]) 
