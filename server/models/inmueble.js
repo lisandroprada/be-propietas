@@ -2,13 +2,6 @@ const mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-
-var contactoSchema = new Schema({
-    _id: { type: String },
-    fullName: { type: String }
-})
-
-
 var InmuebleSchema = new Schema({
     id: { type: String, required: false },
     address: { type: String, required: false },
@@ -32,18 +25,20 @@ var InmuebleSchema = new Schema({
     muni_share: { type: String, required: false },
     publica: { type: String, required: false },
     status: { type: String, required: false },
+    disponible: { type: Boolean, default: true },
+    disponibleFecha: { type: Date, default: Date.now() - 3 * 60 * 60 * 1000 },
     cliente: [{ _id: { type: Schema.Types.ObjectId, ref: 'Cliente' } }, { fullName: { type: String, default: 'defecto' } }],
     uuid: { type: String, required: false },
     img: { type: String, required: false }
 });
-
-
 
 let InmuebleViewsSchema = Schema({
     address: { type: String },
     img: { type: String },
     city: { type: String },
     state: { type: String },
+    disponible: { type: Boolean },
+    disponibleFecha: { type: Date },
     fullName: { type: String }
 
 });
